@@ -1,0 +1,70 @@
+[CIRCLE SKIP]
+When: Large x + circular array + repetitive same operation
+How:
+  rem  = n - i        // elements left in current circle
+  skip = (x-rem) / n  // full circles to skip
+  ans += rem + skip*n
+  x   -= rem + skip*n
+  i    = 0
+Example: Strange Machine (all A's case)
+---------------------------
+
+
+
+[CONSTRUCTION BY PATTERN]
+When: "construct array with distance constraint"
+How:
+  - Try small cases manually
+  - Look for symmetric pattern
+  - Think: can one element be pivot?
+
+This problem pattern:
+[ n, n-1, ..., 2, 1, n, 1, 2, ..., n-1 ]
+  left half     pivot  right half
+  decreasing           increasing
+
+n   → distance n   (index 0 to n)
+x   → distance 2x  (symmetric around pivot)
+---------------------------
+
+
+
+[MAXIMIZE UNSORTED SUBARRAY]
+When: assign values to positions to maximize sorted cost
+How:
+  - large values → left positions  (they dont belong there)
+  - small values → right positions (they dont belong there)
+  - this maximizes the misplaced range
+
+Code:
+  int lo=0, hi=miss.size()-1;
+  for(int i=0; i<zeros.size() && lo<=hi; i++)
+      v[zeros[i]]=miss[hi--];       // large to left
+  for(int i=zeros.size()-1; i>=0 && lo<=hi; i--)
+      v[zeros[i]]=miss[lo++];       // small to right
+---------------------------
+
+
+
+[LAZY TIMESTAMP RESET]
+When: "reset all elements" triggered inside a loop
+How:
+  - Don't copy the array — record the reset as a timestamp
+  - Each element tracks when it was last modified
+  - Before touching element: check if it's stale (last_modified <= last_reset)
+  - If stale → restore from original on demand
+
+Code:
+  if(last_modified[idx] <= last_reset)
+      v2[idx] = v[idx];           // lazy restore
+  if(v2[idx] + c[i] > h)
+      last_reset = i + 1;         // O(1) "reset"
+  else {
+      v2[idx] += c[i];
+      last_modified[idx] = i + 1;
+  }
+
+Learnt from: CF 2185D
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+

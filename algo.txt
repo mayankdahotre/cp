@@ -1,0 +1,16 @@
+# BFS
+
+void bfs(vector<vector<int>> adj){
+    int n = adj.size();
+
+    queue<int> q;
+    q.push(0);
+
+    while(!q.empty()){
+        int sz = sz.size();
+
+        for(int i=0; i<sz; i++){
+            
+        }
+    }
+}

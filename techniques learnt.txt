@@ -1,0 +1,79 @@
+[WORST CASE ANALYSIS]
+When: Before coding ANY problem
+How:
+  - What is max value of input?
+  - How many loop iterations worst case?
+  - If iterations > 10^7 → need optimisation
+Learnt from: Strange Machine (TLE due to x=10^9)
+
+[HALVING BOUND]
+When: x gets halved repeatedly
+How: x<=10^9 → at most 30 halvings → safe to simulate
+Learnt from: Strange Machine (B machines)
+---------------------------
+
+
+
+
+[SMALL CASES FIRST]
+When: Construction problems
+How:
+  n=1: [1,1]
+  n=2: [2,1,2,1]
+  n=3: [3,2,1,3,1,2]
+  spot the pattern → generalise
+Learnt from: Multiple Construction
+
+[PIVOT TECHNIQUE]
+When: Need two halves to mirror each other
+How:
+  - Place special element as pivot in middle
+  - Build left half decreasing
+  - Build right half increasing
+  - Elements appear once on each side
+Learnt from: Multiple Construction
+
+[DON'T OVER-ENGINEER]
+When: Always, before coding
+How:
+  - If constraints are simple → solution is simple
+  - Greedy is not always needed
+  - Pattern > Algorithm for construction problems
+Learnt from: Multiple Construction (missed O(n) solution)
+---------------------------
+
+
+
+
+
+[THINK WHAT BEFORE HOW]
+When: Construction/assignment problems
+How:
+  - Before coding ask: what values should go where?
+  - Then code the assignment
+  - Then find the answer
+Learnt from: Maximum Cost Permutation
+
+[MAXIMIZE RANGE TRICK]
+When: maximize length of bad subarray
+How:
+  - Put wrong values as far left and right as possible
+  - Large → left, Small → right
+  - Answer = last misplaced - first misplaced + 1
+Learnt from: Maximum Cost Permutation
+---------------------------
+
+
+
+[EVENT vs ACTION THINKING]
+When: A bulk operation (reset/clear/undo) is triggered conditionally in a loop
+How:
+  - Ask: do I need to DO this, or just KNOW it happened?
+  - Replace the action with a timestamp
+  - Resolve each element lazily when you next touch it
+  - Use 1-indexed timestamps so sentinel 0 = "never touched"
+Learnt from: CF 2185D
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+

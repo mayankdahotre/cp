@@ -1,0 +1,62 @@
+[DATE] Strange Machine (CF)
+Approach: Simple simulation, loop machine by machine
+Why failed: TLE
+  - Worst case: s="AAAA", x=10^9
+  - Loop runs 10^9 times
+Fix: Skip full circles when all A's
+  rem  = n - i
+  skip = (x - rem) / n
+  ans += rem + skip * n
+  x   -= rem + skip * n
+---------------------------
+
+
+
+[DATE] Multiple Construction (CF 2147B)
+
+My approach: Greedy from n to 1, place at first
+             free (i, i+x)
+Problem: Overcomplicated, hard to prove correct,
+         also slow O(n^2)
+
+What I missed: Simple pattern existed!
+[ n, n-1, n-2, ..., 2, 1, n, 1, 2, ..., n-1 ]
+- n is at index 0 and n → distance = n ✅
+- x is at index (n-x) and (n+x) → distance = 2x ✅
+
+Lesson: ALWAYS look for a pattern before greedy
+        Try small cases (n=3,4,5) and spot pattern
+---------------------------
+
+
+
+
+[DATE] Maximum Cost Permutation (CF)
+
+My approach: Found zero range + checked misplaced
+             Had l2,r2 logic to find boundaries
+
+What I missed:
+  1. Never actually assigned missing numbers to zeros!
+  2. l2/r2 logic was overcomplicated and wrong
+  3. Didnt think about WHAT to assign before HOW
+
+Fix:
+  - large missing → leftmost zeros  (pushes left boundary)
+  - small missing → rightmost zeros (pushes right boundary)
+  - then simply find first/last misplaced index
+
+Lesson: First think WHAT values to place, then find answer
+---------------------------
+
+
+
+MISTAKE LOG
+
+[PHYSICAL COPY INSIDE LOOP]
+Mistake: Used v2 = v on overflow → O(n) per reset → TLE
+Fix: Never copy arrays inside loops to simulate reset
+     Record the event, resolve lazily per element
+Trigger warning: Any time you write arr = original inside a loop
+Learnt from: CF 2185D
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
