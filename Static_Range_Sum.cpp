@@ -9,29 +9,21 @@ using namespace std;
 #define no cout << "NO\n"
 
 void solve() {
-    int n, x;
-    cin>>n>>x;
+    int n, q;
+    cin>>n>>q;
 
     vector<int> v(n);
     for(int i=0; i<n; i++) cin>>v[i];
 
-    if(n==1){
-        cout<<"IMPOSSIBLE"<<endl;
-        return;
+    vector<int> pre(n+1,0);
+    for(int i=0; i<n; i++) pre[i+1]=pre[i]+v[i];
+
+    while(q--){
+        int l,r;
+        cin>>l>>r;
+
+        cout<<pre[r]-pre[l]<<endl;
     }
-
-    map<int,int> mp;
-    for(int i=0; i<n; i++){
-        if(mp.count(x-v[i])){
-            cout<<mp[x-v[i]]<<" "<<i+1<<endl;
-            return;
-        }
-
-        mp[v[i]] = i+1;
-    }
-
-    cout<<"IMPOSSIBLE"<<endl;
-    return;
 }
 
 int32_t main() {

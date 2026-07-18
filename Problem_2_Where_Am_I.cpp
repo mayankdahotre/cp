@@ -9,28 +9,27 @@ using namespace std;
 #define no cout << "NO\n"
 
 void solve() {
-    int n, x;
-    cin>>n>>x;
+    int n;
+    cin>>n;
 
-    vector<int> v(n);
-    for(int i=0; i<n; i++) cin>>v[i];
+    string s;
+    cin>>s;
 
-    if(n==1){
-        cout<<"IMPOSSIBLE"<<endl;
-        return;
-    }
+    int l=0, r=0;
+    set<char> st;
+    int ans=1e8;
 
-    map<int,int> mp;
     for(int i=0; i<n; i++){
-        if(mp.count(x-v[i])){
-            cout<<mp[x-v[i]]<<" "<<i+1<<endl;
-            return;
+        while(st.find(s[i])!=st.end()){
+            l++;
         }
-
-        mp[v[i]] = i+1;
+        else{
+            r=i;
+            ans=min(ans,r-l+1);
+        }
     }
 
-    cout<<"IMPOSSIBLE"<<endl;
+    cout<<ans<<endl;
     return;
 }
 

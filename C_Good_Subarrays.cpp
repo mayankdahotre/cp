@@ -9,28 +9,23 @@ using namespace std;
 #define no cout << "NO\n"
 
 void solve() {
-    int n, x;
-    cin>>n>>x;
+    int n;
+    cin>>n;
 
     vector<int> v(n);
     for(int i=0; i<n; i++) cin>>v[i];
 
-    if(n==1){
-        cout<<"IMPOSSIBLE"<<endl;
-        return;
-    }
+    vector<int> pre(n+1,0);
+    for(int i=0; i<n; i++) pre[i+1]+=pre[i]+v[i];
 
-    map<int,int> mp;
+    int ans=0;
     for(int i=0; i<n; i++){
-        if(mp.count(x-v[i])){
-            cout<<mp[x-v[i]]<<" "<<i+1<<endl;
-            return;
+        for(int j=0; j<n-i; j++){
+            if(i==pre[i+j]-pre[j]) ans++;
         }
-
-        mp[v[i]] = i+1;
     }
 
-    cout<<"IMPOSSIBLE"<<endl;
+    cout<<ans<<endl;
     return;
 }
 
@@ -39,7 +34,12 @@ int32_t main() {
     cin.tie(NULL);
     cout.tie(NULL);
 
-    solve();
+    int T;
+    cin >> T;
+
+    while (T--) {
+        solve();
+    }
 
     return 0;
 }
