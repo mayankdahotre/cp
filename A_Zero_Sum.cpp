@@ -15,21 +15,21 @@ void solve() {
     vector<int> v(n);
     for(int i=0; i<n; i++) cin>>v[i];
 
-    sort(v.begin(), v.end());
+    int sum=0;
+    for(int i=0; i<n; i++) sum+=v[i];
 
-    vector<int> pre(n+1,0);
-    for(int i=0; i<n; i++) pre[i+1]=pre[i]+v[i];
-
-    if(v[0]!=1){
+    if(n==2 && sum!=0){
         no;
         return;
     }
 
-    for(int i=1; i<n; i++){
-        if(pre[i]<v[i]){
-            no;
-            return;
-        }
+    if(sum%2){
+        no;
+        return;
+    }
+    else if((sum/2)%2){
+        no;
+        return;
     }
 
     yes;

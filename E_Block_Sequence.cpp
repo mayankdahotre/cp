@@ -15,24 +15,21 @@ void solve() {
     vector<int> v(n);
     for(int i=0; i<n; i++) cin>>v[i];
 
-    sort(v.begin(), v.end());
-
-    vector<int> pre(n+1,0);
-    for(int i=0; i<n; i++) pre[i+1]=pre[i]+v[i];
-
-    if(v[0]!=1){
-        no;
-        return;
-    }
-
-    for(int i=1; i<n; i++){
-        if(pre[i]<v[i]){
-            no;
-            return;
+    int x=0;
+    int ans=0;
+    for(int i=n-1; i>=0; i--){
+        if(v[i]==x) x=0;
+        else if(v[i]<x){
+            ans+=x-v[i];
+            x=0;
+            continue;
         }
-    }
 
-    yes;
+        x++;
+    }
+    if(x) ans+=x;
+
+    cout<<ans<<endl;
     return;
 }
 
