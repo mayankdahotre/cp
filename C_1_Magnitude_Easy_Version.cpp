@@ -2,9 +2,16 @@
 using namespace std;
 
 #define int long long
-#define debug(x) cout << #x << " = " << x << endl;
-#define debugv(v) cout << #v << " = "; for(auto it : v) cout << it << ' '; cout << endl;
-#define debugvv(v) { cout << #v << " = " << endl; for(auto &r : v){ for(auto &x : r) cout << x << ' '; cout << endl; } }
+#define debug(x) cerr << #x << " = " << (x) << endl;
+#define debug2(a, b) cerr << #a << "=" << (a) << " | " << #b << "=" << (b) << endl;
+#define debug3(a, b, c) cerr << #a << "=" << (a) << " | " << #b << "=" << (b) << " | " << #c << "=" << (c) << endl;
+#define debugp(p) cerr << #p << " = {" << (p).first << ", " << (p).second << "}" << endl;
+#define debugv(v) { cerr << #v << " = [ "; for(auto &it : v) cerr << it << ' '; cerr << "]" << endl; }
+#define debugvp(v) { cerr << #v << " = [ "; for(auto &p : v) cerr << "{" << p.first << "," << p.second << "} "; cerr << "]" << endl; }
+#define debugvv(v) { cerr << #v << " = \n"; for(auto &r : v){ cerr << "  [ "; for(auto &x : r) cerr << x << ' '; cerr << "]\n"; } }
+#define debugm(m) { cerr << #m << " = {\n"; for(auto &p : m) cerr << "  " << p.first << " -> " << p.second << "\n"; cerr << "}" << endl; }
+#define yes cout << "YES\n"
+#define no cout << "NO\n"
 
 void solve() {
     int n;
@@ -13,34 +20,17 @@ void solve() {
     vector<int> v(n);
     for(int i=0; i<n; i++) cin>>v[i];
 
-    int ans=0;
-    
-    int i=0;
-    while(i<n){
-        if(v[i]>0){
-            ans+=v[i];
-            i++;
-            continue;
-        }
+    int c=0;
+    for(int i=0; i<n; i++){
+        c+=v[i];
 
-        int x=0;
-        bool neg = v[i]<0;
-
-        while(v[i]<0){
-            x+=v[i];
-            i++;
-            // debug(x);
-        }
-
-        if(neg) ans=abs(ans+x);
-        // debug(ans);
-
-        // debug(ans);
+        if(c>=0) continue;
+        else if(i+1<n && v[i+1]>0) c=abs(c);
     }
 
-    ans=abs(ans);
+    c=abs(c);
 
-    cout<<ans<<endl;
+    cout<<c<<endl;
     return;
 }
 

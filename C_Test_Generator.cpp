@@ -101,3 +101,82 @@ int32_t main() {
 
     return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#include <bits/stdc++.h>
+using namespace std;
+
+#define int long long
+#define debug(x) cout << #x << " = " << x << endl;
+#define debugv(v) cout << #v << " = "; for(auto it : v) cout << it << ' '; cout << endl;
+#define debugvv(v) { cout << #v << " = " << endl; for(auto &r : v){ for(auto &x : r) cout << x << ' '; cout << endl; } }
+
+void solve() {
+    int n;
+    cin>>n;
+
+    vector<int> v(n);
+    for(int i=0; i<n; i++) cin>>v[i];
+
+    vector<int> pref(n+1, 0);
+    for(int i=1; i<=n; i++) pref[i]=pref[i-1]+v[i-1];
+
+    int sum=pref[n];
+
+    int l=n, r=n;
+    for(int i=n-1; i>=0; i--){
+        if(l+r<=v[i]){
+            l--;
+            r--;
+            continue;
+        }
+        else{
+            int prev = l+r;
+            int cur = 0;
+            while(l>0){
+                cur = (r-l+1)*(l+r);
+                if(cur>=pref[r]-pref[l-1] && cur>prev){
+                    l--;
+                }
+            }
+            l++;
+
+            sum = max(sum, pref[l-1]+pref[n]-pref[r]+cur);
+        }
+    }
+
+    cout<<sum<<endl;
+    return;
+}
+
+int32_t main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+    int T;
+    cin >> T;
+
+    while (T--) {
+        solve();
+    }
+
+    return 0;
+}

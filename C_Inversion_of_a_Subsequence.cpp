@@ -137,7 +137,7 @@ void solve() {
         if(nof%2) cout<<1<<endl;
         else if(nzf%2==0) cout<<2<<endl;
         else{
-            if(nznf>2) cout<<2<<endl;
+            if(nznf>=2) cout<<2<<endl;
             else cout<<-1<<endl;
         }
     }

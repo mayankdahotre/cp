@@ -20,8 +20,6 @@ void solve() {
     int l,r;
     cin>>l>>r;
 
-    vector<int> p = {2,3,5,7};
-
     int ans = f(r)-f(l-1);
 
     cout<<ans<<endl;

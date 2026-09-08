@@ -8,10 +8,8 @@ using namespace std;
 
 int mod = 998244353;
 
-int fact(int n){
-    if(n<=1) return 1;
-    return n*fact(n-1)%mod;
-}
+vector<int> fact(51,1);
+for(int i=2; i<=50; i++) fact[i]=(fact[i-1]*i)%mod;
 
 void solve() {
     int n;
@@ -39,6 +37,9 @@ void solve() {
     if(sum>x){
         cout<<0<<endl;
         return;
+    }
+    else if(sum==x){
+        cout<<fact[]
     }
 
     int ans=(1+min(n-1-mxi,x-sum))%mod;

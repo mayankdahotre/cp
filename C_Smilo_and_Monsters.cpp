@@ -95,10 +95,9 @@ void solve() {
     while(i<=f){
         if(i==f){
             int rem = max(0LL, v[i] - sum);
-            int normal = (rem + 1) / 2;
-            ans += normal;
-            // Only use an ultimate if monsters are still standing after normal attacks
-            if (v[i] - normal > 0) ans++; 
+            int nor = (rem + 1) / 2;
+            ans += nor;
+            if (v[i] - nor > 0) ans++; 
             break;
         }
 

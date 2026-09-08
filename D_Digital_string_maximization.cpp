@@ -117,7 +117,8 @@ string res(string s) {
 void solve() {
     string s;
     cin >> s;
-    cout << res(s) << "\n";
+    cout << res(s) << endl;
+    return;
 }
 
 int32_t main() {

@@ -24,7 +24,7 @@ void solve() {
 
         if(s.length() != n) {
             no;
-            continue; // Go to next query, don't return
+            continue;
         }
 
         bool ok = true;

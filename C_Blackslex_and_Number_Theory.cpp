@@ -2,6 +2,11 @@
 using namespace std;
 
 #define int long long
+#define debug(x) cout << #x << " = " << x << endl;
+#define debugv(v) cout << #v << " = "; for(auto it : v) cout << it << ' '; cout << endl;
+#define debugvv(v) { cout << #v << " = " << endl; for(auto &r : v){ for(auto &x : r) cout << x << ' '; cout << endl; } }
+#define yes cout << "YES\n"
+#define no cout << "NO\n"
 
 void solve() {
     int n;
@@ -10,13 +15,13 @@ void solve() {
     vector<int> v(n);
     for(int i=0; i<n; i++) cin>>v[i];
 
-    // sort(v.begin(), v.end());
-    int g = abs(v[1]-v[0]);
-    for(int i=1; i<n-1; i++){
-        g = __gcd(g, abs(v[i+1]-v[i]));
-    }
+    sort(v.begin(), v.end());
 
-    cout<<g<<endl;
+    int ans=v[0];
+
+    if(v[1]-v[0]>v[0]) ans = v[1]-v[0];
+
+    cout<<ans<<endl;
     return;
 }
 
@@ -27,8 +32,10 @@ int32_t main() {
 
     int T;
     cin >> T;
+
     while (T--) {
         solve();
     }
+
     return 0;
 }

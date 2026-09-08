@@ -111,19 +111,17 @@ void solve() {
     vector<vector<int>> vb(n, vector<int> (31,0));
     for(int i=0; i<n; i++) for(int j=0; j<31; j++) if(v[i]>>j & 1) vb[i][j]=1;
 
-    // Fixed Syntax: properly allocate 2D vector dimensions
     vector<vector<int>> vbp(n+1, vector<int>(31, 0)); 
 
     for(int i=1; i<=n; i++){
         vbp[i]=vbp[i-1];
-        for(int j=0; j<31; j++){ // Fixed: Change 30 to 31 to include all bits
+        for(int j=0; j<31; j++){
             vbp[i][j]+=vb[i-1][j];
         }
     }
 
     vector<int> ans(q);
 
-    // Fixed Syntax: auto check = [&](...) and 1LL for long long safety
     auto check = [&](int l, int r)->int{
         int num = 0;
         int len = r-l+1;
@@ -136,14 +134,14 @@ void solve() {
         int lo=l[i];
         int hi=n;
         int c=k[i];
-        int res = -1; // Added tracker for the best valid r
+        int res = -1;
 
-        while(lo<=hi){ // Fixed: lo <= hi
+        while(lo<=hi){
             int mid = (lo+hi)/2;
 
-            int x=check(l[i],mid); // Fixed: Pass l[i] as the fixed left index, not lo
+            int x=check(l[i],mid); 
             if(x>=c) {
-                res = mid; // mid is valid, save it!
+                res = mid;
                 lo=mid+1;
             }
             else hi=mid-1;

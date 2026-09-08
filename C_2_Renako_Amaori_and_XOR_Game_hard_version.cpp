@@ -97,16 +97,15 @@ void solve() {
     }
     
     int k = 31 - __builtin_clz(s);
-    int c1 = 0, c2 = 0;
+    int li = -1;
     
     for (int i = 0; i < n; i++) {
         if (((a[i] ^ b[i]) >> k) & 1) {
-            if (i % 2 == 0) c1++;
-            else c2++;
+            li = i;
         }
     }
     
-    if (c1 > c2) cout << "Ajisai" << endl;
+    if (li % 2 == 0) cout << "Ajisai" << endl;
     else cout << "Mai" << endl;
 }
 

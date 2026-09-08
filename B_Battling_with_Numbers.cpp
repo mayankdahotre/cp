@@ -67,15 +67,14 @@ using namespace std;
 
 #define int long long
 const int MOD = 998244353;
-const int MAXA = 2000005; // Placed slightly above the maximum prime value 2*10^6
+const int MAXA = 2000005; 
 
-// Using global arrays to avoid large memory allocations on the stack
 int powX[MAXA];
 int powY[MAXA];
 
 void solve() {
     int n;
-    if (!(cin >> n)) return;
+    cin >> n;
 
     vector<int> a(n), b(n);
     for (int i = 0; i < n; i++) cin >> a[i];
@@ -88,36 +87,29 @@ void solve() {
     for (int i = 0; i < m; i++) cin >> c[i];
     for (int i = 0; i < m; i++) cin >> d[i];
 
-    // Populate the prime exponent frequencies
     for (int i = 0; i < n; i++) powX[a[i]] = b[i];
     for (int i = 0; i < m; i++) powY[c[i]] = d[i];
 
-    int diff_count = 0;
+    int dc = 0;
 
-    // Check all possible prime factors up to the max limit
     for (int i = 0; i < MAXA; i++) {
-        // Condition 1: If Y has a higher prime power than X, it's impossible
         if (powY[i] > powX[i]) {
-            cout << 0 << "\n";
+            cout << 0 << endl;
             return;
         }
-        // Condition 2: If X has a strictly greater power, it yields 2 independent choices
         if (powX[i] > powY[i]) {
-            diff_count++;
+            dc++;
         }
     }
 
-    // Calculate (2^diff_count) % 998244353
     int ans = 1;
-    for (int i = 0; i < diff_count; i++) {
-        ans = (ans * 2) % MOD;
-    }
+    for (int i = 0; i < dc; i++) ans = (ans * 2) % MOD;
 
-    cout << ans << "\n";
+    cout << ans << endl;
+    return;
 }
 
 int32_t main() {
-    // Optimizing standard I/O operations for performance
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
 

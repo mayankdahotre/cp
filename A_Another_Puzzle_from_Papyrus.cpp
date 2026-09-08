@@ -62,7 +62,6 @@
 // }
 
 
-
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -73,34 +72,34 @@ void solve() {
     cin >> n >> c;
 
     vector<int> a(n), b(n);
-    for(int i = 0; i < n; i++) cin >> a[i];
-    for(int i = 0; i < n; i++) cin >> b[i];
+    for (int i = 0; i < n; i++) cin >> a[i];
+    for (int i = 0; i < n; i++) cin >> b[i];
 
-    vector<int> sa = a, sb = b;
-    sort(sa.begin(), sa.end());
-    sort(sb.begin(), sb.end());
-
-    int ans = 0;
-    bool flg = false;
-
-    for(int i = 0; i < n; i++) {
-        if(sb[i] > sa[i]) {
-            cout << -1 << "\n";
-            return;
+    int c1 = 0;
+    for (int i = 0; i < n; i++) {
+        if (a[i] < b[i]) {
+            c1 = -1;
+            break;
         }
-        ans += sa[i] - sb[i];
+        c1 += a[i] - b[i];
     }
 
-    multiset<pair<int, int>> s1, s2;
-    for(int i = 0; i < n; i++) {
-        s1.insert({a[i], b[i]});
-        s2.insert({sa[i], sb[i]});
+    sort(a.begin(), a.end());
+    sort(b.begin(), b.end());
+
+    int c2 = c;
+    for (int i = 0; i < n; i++) {
+        if (a[i] < b[i]) {
+            c2 = -1;
+            break;
+        }
+        c2 += a[i] - b[i];
     }
 
-    if(s1 != s2) flg = true;
-    if(flg) ans += c;
-
-    cout << ans << "\n";
+    if (c1 == -1 && c2 == -1) cout << -1 << endl;
+    else if (c1 == -1) cout << c2 << endl;
+    else if (c2 == -1) cout << c1 << endl;
+    else cout << min(c1, c2) << endl;
 }
 
 int32_t main() {

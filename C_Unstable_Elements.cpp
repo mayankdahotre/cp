@@ -166,6 +166,9 @@
 
 //     return 0;
 // }
+
+
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -189,19 +192,17 @@ void solve(){
     }
     vf.push_back(f);
 
-    // Sort frequencies to easily track when groups disappear
     sort(vf.begin(), vf.end());
 
     int ans = 0;
     int p = -1;
-    int s = n; // Total remaining elements
-    int idx = 0; // Pointer to the smallest active block
-    int t = 0;   // Current time/peel step
+    int s = n;
+    int idx = 0;
+    int t = 0;
 
     while(idx < vf.size()){
-        int c = vf.size() - idx; // Number of remaining blocks
+        int c = vf.size() - idx;
 
-        // Exact condition from your original correct logic
         if(c != p){
             if(k >= s && (k - s) % c == 0){
                 ans++;
@@ -209,10 +210,8 @@ void solve(){
             }
         }
 
-        // Simulating the decrement of all active blocks by 1
         s -= c; 
         
-        // Advance the pointer for all blocks that have now shrunk to 0
         while(idx < vf.size() && vf[idx] == t + 1){
             idx++;
         }
@@ -220,7 +219,8 @@ void solve(){
         t++;
     }
 
-    cout << ans << "\n";
+    cout << ans << endl;
+    return;
 }
 
 int32_t main(){

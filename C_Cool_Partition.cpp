@@ -1,64 +1,8 @@
-// #include <bits/stdc++.h>
-// using namespace std;
-
-// #define int long long
-// #define debug(x) cout << #x << " = " << x << endl;
-// #define debugv(v) cout << #v << " = "; for(auto it : v) cout << it << ' '; cout << endl;
-// #define debugvv(v) { cout << #v << " = " << endl; for(auto &r : v){ for(auto &x : r) cout << x << ' '; cout << endl; } }
-
-// void solve() {
-//     int n;
-//     cin>>n;
-
-//     vector<int> v(n);
-//     for(int i=0; i<n; i++) cin>>v[i];
-
-//     int ans=0;
-
-//     vector<vector<int>> f(n, vector<int>(n,0));
-//     for(int i=0; i<n; i++){
-//         f[i]=f[i-1];
-//         f[i][v[i]]++;
-//     }
-
-//     set<int> prev, cur;
-//     int x=0, y=1;
-//     for(int i=0; i<n; i++){
-//         if(x==0 && i!=0){
-//             prev=cur;
-//             cur.insert(v[i]);
-//             x=prev.size();
-//             y++;
-//         }
-//         else{
-//             if(prev.find(v[i])!=prev.end()){
-//                 x--;
-//                 prev.erase(v[i]);
-//             }
-//             cur.insert(v[i]);
-//         }
-//     }
-
-//     cout<<y<<endl;
-//     return;
-// }
-
-// int32_t main() {
-//     ios_base::sync_with_stdio(false);
-//     cin.tie(NULL);
-//     cout.tie(NULL);
-
-//     int T;
-//     cin >> T;
-
-//     while (T--) {
-//         solve();
-//     }
-
-//     return 0;
-// }
-
-
+// Problem: CF 1029 - C (Div. 3)
+// Tag: Prefix Processing / Frequency Maps / Greedy Partition
+// The Trick: Precalculate a forward prefix array of distinct element counts. 
+// Then, iterate backwards using a frequency map to find the exact index where the suffix state matches the remaining prefix state to lock in a valid partition.
+// Revisit Target: Monday, July 20, 2026 (3 days from now).
 
 
 #include <bits/stdc++.h>

@@ -29,7 +29,8 @@ void solve() {
         }
     }
 
-    cout << ans << '\n';
+    cout << ans << endl;
+    return;
 }
 
 int32_t main() {

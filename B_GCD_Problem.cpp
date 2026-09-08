@@ -71,7 +71,7 @@ void solve() {
                         int y = b * i;
                         
                         if (x != y && y != i && x != i) {
-                            cout << x << " " << y << " " << i << "\n";
+                            cout << x << " " << y << " " << i << endl;
                             return;
                         }
                     }
@@ -79,7 +79,9 @@ void solve() {
             }
         }
     }
-    cout << -1 << "\n";
+    
+    cout << -1 << endl;
+    return;
 }
 
 int32_t main() {

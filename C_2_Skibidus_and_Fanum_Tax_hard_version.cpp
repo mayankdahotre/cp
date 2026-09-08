@@ -20,11 +20,11 @@ void solve() {
         if(i==n-1) a[i]=max(a[i], b[m-1]-a[i]);
 
         if(a[i]>a[i+1]){
-            int lb = *upper_bound(b.begin(), b.end(), a[i+1]+a[i]);
+            int lb = *lower_bound(b.begin(), b.end(), a[i+1]+a[i]);
             a[i]=lb-a[i];
         }
         else{
-            int lb = *upper_bound(b.begin(), b.end(), a[i+1]+a[i]);
+            int lb = *lower_bound(b.begin(), b.end(), a[i+1]+a[i]);
             a[i]=max(a[i], lb-a[i]);
         }
     }

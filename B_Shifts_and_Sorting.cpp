@@ -1,41 +1,90 @@
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// #define int long long
+// #define debug(x) cout << #x << " = " << x << endl;
+// #define debugv(v) cout << #v << " = "; for(auto it : v) cout << it << ' '; cout << endl;
+// #define debugvv(v) { cout << #v << " = " << endl; for(auto &r : v){ for(auto &x : r) cout << x << ' '; cout << endl; } }
+// #define yes cout << "YES\n"
+// #define no cout << "NO\n"
+
+// void solve() {
+//     string s;
+//     cin>>s;
+
+//     int n = s.length();
+//     int i=0, j=0, ans=0;
+
+//     while(s[j]=='0') j++;
+
+//     while(i<n){
+//         while(s[i]=='1') i++;
+
+//         if(i<j) j++;
+//         else{
+//             ans+=j-i+1;
+//             s[i]='1';
+//             s[j]='0';
+//             j++;
+//         }
+//     }
+
+//     cout<<ans<<endl;
+//     return;
+// }
+
+// int32_t main() {
+//     ios_base::sync_with_stdio(false);
+//     cin.tie(NULL);
+//     cout.tie(NULL);
+
+//     int T;
+//     cin >> T;
+
+//     while (T--) {
+//         solve();
+//     }
+
+//     return 0;
+// }
+
+
+
 #include <bits/stdc++.h>
 using namespace std;
 
 #define int long long
-
-void op(string &s, int l, int r) {
-    int n = s.length();
-    string s1 = s.substr(0, l);
-    string s2 = s.substr(l + 1, r - l - 1);  // Fixing the substring length
-    string s3 = s.substr(r + 1, n - r - 1);
-
-    s = s1 + s[r] + s2 + s3; // Moving s[r] to the front of the section
-}
+#define debug(x) cout << #x << " = " << x << endl;
+#define debugv(v) cout << #v << " = "; for(auto it : v) cout << it << ' '; cout << endl;
+#define debugvv(v) { cout << #v << " = " << endl; for(auto &r : v){ for(auto &x : r) cout << x << ' '; cout << endl; } }
+#define yes cout << "YES\n"
+#define no cout << "NO\n"
 
 void solve() {
     string s;
     cin >> s;
 
-    int sum = 0;
-    size_t it1 = s.find('0');  // Find first '0'
+    int n = s.length();
+    int i = 0, j = 0, ans = 0;
 
-    if(s.find('1') == string::npos){
-        cout<<0<<endl;
-        return;
+    while (j < n && s[j] == '0') j++;
+
+    i = j;
+
+    while (i < n) {
+        while (i < n && s[i] == '1') i++;
+        
+        if (i >= n) break;
+
+        ans += i - j + 1;
+        s[i] = '1';
+        s[j] = '0';
+        j++;
+        i++;
     }
-    
-    while (it1 != string::npos) {
-        size_t it2 = s.find('0', it1 + 1); // Find next '0'
 
-        if (it2 == string::npos) break; // No second '0' found
-
-        sum += (it2 - it1 + 1);  // Compute sum
-
-        op(s, it1, it2); // Modify string
-        it1 = s.find('0'); // Restart search after modification
-    }
-
-    cout << sum << endl;
+    cout << ans << endl;
+    return;
 }
 
 int32_t main() {
@@ -45,8 +94,10 @@ int32_t main() {
 
     int T;
     cin >> T;
+
     while (T--) {
         solve();
     }
+
     return 0;
 }

@@ -16,23 +16,17 @@ void solve() {
     for(int i=0; i<n; i++) cin>>v[i];
 
     int x=7;
-    vector<pair<int,int>> occ(x, {-2, -2});
-    occ[0] = {-1, -1};
+    vector<int> mod(x,0);
+    mod[0]=1;
 
-    int sum=0;
     for(int i=0; i<n; i++){
-        sum+=v[i];
-        int rem=((sum%x)+x)%x;
-
-        if(occ[rem].first == -2) occ[rem].first = i;
-        occ[rem].second = i;
+        int k=((v[i]%x)+x)%x;
+        mod[k]++;
     }
 
-    int ans=0;
-    for(int i=0; i<x; i++){
-        if(occ[i].first != -2){
-            ans=max(ans, occ[i].second - occ[i].first);
-        }
+    int ans=mod[0];
+    for(int i=1; i<x; i++){
+        ans=max(ans, min(mod[i],mod[x-i]));
     }
 
     cout<<ans<<endl;

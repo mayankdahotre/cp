@@ -2,64 +2,57 @@
 // using namespace std;
 
 // #define int long long
-// #define debug(x) cout << #x << " = " << x << endl;
-// #define debugv(v) cout << #v << " = "; for(auto it : v) cout << it << ' '; cout << endl;
-// #define yes cout << "YES" << endl; return;
-// #define no cout << "NO" << endl; return;
-
-// vector<int> dfs(int u, map<int, vector<int>> dp){
-//     if(!dp[u].empty()) return dp[u];
-
-//     int uu=u;
-
-//     vector<int> t;
-//     t.push_back(u);
-
-//     while(u!=1){
-//         if(u%2) u--;
-//         else u/=2;
-
-//         if(dp[u]){
-//             t.insert(dp[u]);
-//             break;
-//         }
-//     }
-
-//     return dp[uu]=t;
-// }
+// #define debug(x) cerr << #x << " = " << (x) << endl;
+// #define debug2(a, b) cerr << #a << "=" << (a) << " | " << #b << "=" << (b) << endl;
+// #define debug3(a, b, c) cerr << #a << "=" << (a) << " | " << #b << "=" << (b) << " | " << #c << "=" << (c) << endl;
+// #define debugp(p) cerr << #p << " = {" << (p).first << ", " << (p).second << "}" << endl;
+// #define debugv(v) { cerr << #v << " = [ "; for(auto &it : v) cerr << it << ' '; cerr << "]" << endl; }
+// #define debugvp(v) { cerr << #v << " = [ "; for(auto &p : v) cerr << "{" << p.first << "," << p.second << "} "; cerr << "]" << endl; }
+// #define debugvv(v) { cerr << #v << " = \n"; for(auto &r : v){ cerr << "  [ "; for(auto &x : r) cerr << x << ' '; cerr << "]\n"; } }
+// #define debugm(m) { cerr << #m << " = {\n"; for(auto &p : m) cerr << "  " << p.first << " -> " << p.second << "\n"; cerr << "}" << endl; }
+// #define yes cout << "YES\n"
+// #define no cout << "NO\n"
 
 // void solve() {
 //     int n;
-//     cin>>n;
+//     cin >> n;
 
 //     vector<int> v(n);
-//     for(int i=0; i<n; i++) cin>>v[i];
+//     for(int i = 0; i < n; i++) cin >> v[i];
 
-//     sort(v.begin(), v.end());
+//     map<int, vector<pair<int, int>>> m;
 
-//     vector<vector<int>> vv(n);
-//     map<int,vector<int>> dp;
-//     for(int i=0; i<n; i++) vv[i]=dfs(v[i]);
+//     for(int i = 0; i < n; i++) {
+//         int x = v[i];
+//         int c = 0;
 
-//     map<int,int> f;
+//         m[x].push_back({i, c});
 
-//     for(int i=0; i<n; i++) for(int a: v[i]) f[a]++;
+//         bool b1 = (x == 1), b2 = (x == 2);
+//         while(!(b1 && b2) && c < 100) {
+//             if(x % 2 == 0) x /= 2;
+//             else x += 1;
+//             c++;
+//             m[x].push_back({i, c});
 
-//     int ans=0;
-//     for(auto p: f){
-//         int x = p.first;
-//         int y = p.second;
-
-//         if(y==n){
-//             int sum=0;
-//             for(int i=0; i<n; i++){
-//                 sum+=find(v.begin(), v.end(), x);
-//             }
-//             ans=min(sum, ans);
+//             if(x==1) b1=true;
+//             if(x==2) b2=true;
 //         }
 //     }
 
-//     cout<<ans<<endl;
+//     int ans = 1e18;
+
+//     for(auto &it : m) {
+//         if((int)it.second.size() == n) {
+//             int sum = 0;
+//             for(auto &p : it.second) {
+//                 sum += p.second;
+//             }
+//             ans = min(ans, sum);
+//         }
+//     }
+
+//     cout << ans << endl;
 //     return;
 // }
 
@@ -82,104 +75,78 @@
 
 
 
+
+
+
+
+
 #include <bits/stdc++.h>
 using namespace std;
 
 #define int long long
-#define debug(x) cout << #x << " = " << x << endl;
-#define debugv(v) cout << #v << " = "; for(auto it : v) cout << it << ' '; cout << endl;
-#define yes cout << "YES" << endl; return;
-#define no cout << "NO" << endl; return;
-
-map<int, vector<int>> dp;
-
-vector<int> dfs(int u){
-
-    if(!dp[u].empty()) return dp[u];
-
-    int uu=u;
-
-    vector<int> t;
-    t.push_back(u);
-
-    while(u!=1){
-
-        if(u%2) u++;
-        else u/=2;
-
-        t.push_back(u);
-
-        if(!dp[u].empty()){
-
-            vector<int> temp = dp[u];
-
-            for(int i=1; i<temp.size(); i++){
-                t.push_back(temp[i]);
-            }
-
-            break;
-        }
-    }
-
-    return dp[uu]=t;
-}
+#define debug(x) cerr << #x << " = " << (x) << endl;
+#define debug2(a, b) cerr << #a << "=" << (a) << " | " << #b << "=" << (b) << endl;
+#define debug3(a, b, c) cerr << #a << "=" << (a) << " | " << #b << "=" << (b) << " | " << #c << "=" << (c) << endl;
+#define debugp(p) cerr << #p << " = {" << (p).first << ", " << (p).second << "}" << endl;
+#define debugv(v) { cerr << #v << " = [ "; for(auto &it : v) cerr << it << ' '; cerr << "]" << endl; }
+#define debugvp(v) { cerr << #v << " = [ "; for(auto &p : v) cerr << "{" << p.first << "," << p.second << "} "; cerr << "]" << endl; }
+#define debugvv(v) { cerr << #v << " = \n"; for(auto &r : v){ cerr << "  [ "; for(auto &x : r) cerr << x << ' '; cerr << "]\n"; } }
+#define debugm(m) { cerr << #m << " = {\n"; for(auto &p : m) cerr << "  " << p.first << " -> " << p.second << "\n"; cerr << "}" << endl; }
+#define yes cout << "YES\n"
+#define no cout << "NO\n"
 
 void solve() {
-
     int n;
     cin>>n;
 
     vector<int> v(n);
-
     for(int i=0; i<n; i++) cin>>v[i];
 
-    sort(v.begin(), v.end());
-
-    vector<vector<int>> vv(n);
-
-    for(int i=0; i<n; i++) vv[i]=dfs(v[i]);
-
-    map<int,int> f;
-    map<int,int> cost;
-
-    vector<int> is2(n,0); 
-
+    map<int, vector<pair<int,int>>> mp;
+    
     for(int i=0; i<n; i++){
+        int x = v[i];
 
-        for(int j=0; j<vv[i].size(); j++){
+        int m=0;
+        mp[x].push_back({m,i});
 
-            int a = vv[i][j];
+        set<int> seen; 
+        seen.insert(x);
 
-            if(vv[i][j]==2 && !is2[i]) is2[i]=1;
+        bool b1 = (x==1), b2 = (x==2);
+        while(!(b1 && b2)){
+            if(x%2) x++;
+            else x/=2;
 
-            f[a]++;
-            cost[a]+=j;
+            m++;
+
+            if(x==1) b1 = true;
+            if(x==2) b2 = true;
+
+            if(seen.find(x) == seen.end()) {
+                seen.insert(x);
+                mp[x].push_back({m,i});
+            } else if (b1 && b2) {
+                break;
+            }
         }
     }
 
-    int ans=0;
+    int ans = 1e18;
 
-    for(auto vi: vv) ans+=vi.size();
-
-   int a2=0;
-
-    for(int i=0; i<n; i++){
-
-        if(!is2[i]){
-            a2 += vv[i].size();
+    for(auto &p: mp){
+        if(p.second.size()==n){
+            int y=0;
+            for(auto &item : p.second) y += item.first;
+            ans=min(y, ans);
         }
     }
-
-    a2 += cost[2];
-
-    ans=min(a2, ans);
 
     cout<<ans<<endl;
     return;
 }
 
 int32_t main() {
-
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);

@@ -126,7 +126,7 @@ void solve() {
         if(b[i] > d[i]) {
             ans += a[i] + b[i] - d[i];
         }
-        else { // b[i] <= d[i]
+        else {
             if(a[i] > c[i]) {
                 ans += a[i] - c[i];
             }

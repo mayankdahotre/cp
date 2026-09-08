@@ -76,15 +76,15 @@ void solve() {
     vector<int> p1(n+1,0), p2(n+1,0);
 
     for(int i=1; i<=n; i++){
-        if(p1[i]==1) p1[i]++;
-        else p1[i]--;
+        if(v[i-1]==1) p1[i] = 1;
+        else p1[i] = -1;
 
         p1[i]+=p1[i-1];
     }
 
     for(int i=1; i<=n; i++){
-        if(p2[i]==3) p2[i]++;
-        else p2[i]--;
+        if(v[i-1]==3) p2[i] = -1;
+        else p2[i] = 1;
 
         p2[i]+=p2[i-1];
     }
